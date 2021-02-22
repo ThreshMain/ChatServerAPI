@@ -71,4 +71,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub ThreshMain Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/ThreshMain/ChatServerAPI</url>
+        </repository>
+    </distributionManagement>
 </project>
