@@ -2,7 +2,6 @@ package main.chat.controller;
 
 import main.chat.Password;
 import main.chat.User;
-import main.chat.repository.UserRepository;
 import main.chat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
