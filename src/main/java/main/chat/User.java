@@ -29,7 +29,7 @@ public class User {
     private String token;
 
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "users")
     private List<ChatRoom> chatRooms;
 
     public List<ChatRoom> getChatRooms() {

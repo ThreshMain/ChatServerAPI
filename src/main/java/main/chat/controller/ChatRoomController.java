@@ -161,10 +161,10 @@ public class ChatRoomController {
         }
     }
     private String joinChatRoom(ChatRoom room, User user) {
-        room.getUsers().add(user);
-        user.getChatRooms().add(room);
-        userService.save(user);
-        chatRoomService.save(room);
+        if(!room.getUsers().contains(user)){
+            room.getUsers().add(user);
+            chatRoomService.save(room);
+        }
         return "Successfully joined chat room";
     }
 
