@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.swing.text.html.Option;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Optional;
@@ -80,5 +81,13 @@ public class UserController {
     public @ResponseBody
     Iterable<User> getAllUsers() {
         return userService.findAll();
+    }
+
+
+    @GetMapping(path = "/{id}/get")
+    public @ResponseBody
+    User getUserWithId(@PathVariable("id") int id) {
+        Optional<User> user = userService.findById(id);
+        return user.orElse(null);
     }
 }

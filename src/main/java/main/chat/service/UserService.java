@@ -28,6 +28,11 @@ public class UserService {
         }
         return Optional.empty();
     }
+
+    public Optional<User> findById(int id){
+        return userRepository.findById(id);
+    }
+
     public Optional<User> findByUserName(String userName){
         List<User> users= userRepository.findByUserName(userName);
         if(users.size()==1){

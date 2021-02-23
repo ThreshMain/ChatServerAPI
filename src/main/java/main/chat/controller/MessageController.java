@@ -20,65 +20,9 @@ import java.util.Optional;
 @RequestMapping(value = "message")
 public class MessageController {
 
-    @Autowired
-    private ChatRoomService chatRoomService;
-
-    @Autowired
-    private MessageService messageService;
 
     @Autowired
     private UserService userService;
-
-    @PostMapping(path = "/send/{id}")
-    public @ResponseBody
-    String sendNewMessage(@PathVariable("id") int roomID, @RequestParam String content, @RequestParam String token) {
-        Optional<ChatRoom> optionalRoom = chatRoomService.findById(roomID);
-        Optional<User> optionalUser = userService.findByToken(token);
-        if (optionalRoom.isPresent()) {
-            if (optionalUser.isPresent()) {
-                ChatRoom room = optionalRoom.get();
-                User user = optionalUser.get();
-                if (!room.isLocked() || room.getUsers().contains(user)) {
-                    Message message = new Message();
-                    message.setContent(content);
-                    message.setAuthor(user);
-                    message.setChatRoom(room);
-                    messageService.save(message);
-                    room.sendMessage(message);
-                    chatRoomService.save(room);
-                    return "Message sent";
-                } else {
-                    throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You don't have access to this room!");
-                }
-            } else {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found");
-            }
-        } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Room not found");
-        }
-    }
-
-    @GetMapping(path = "/all/{id}")
-    public @ResponseBody
-    Iterable<Message> getAllMessages(@PathVariable("id") int roomID, @RequestParam String token) {
-        Optional<ChatRoom> optionalRoom = chatRoomService.findById(roomID);
-        Optional<User> optionalUser = userService.findByToken(token);
-        if (optionalRoom.isPresent()) {
-            if (optionalUser.isPresent()) {
-                ChatRoom room = optionalRoom.get();
-                User user = optionalUser.get();
-                if (!room.isLocked() || room.getUsers().contains(user)) {
-                    return room.getMessages();
-                } else {
-                    throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "You don't have access to this room!");
-                }
-            } else {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User not found");
-            }
-        } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Room not found");
-        }
-    }
 
     @GetMapping(path = "/all")
     public @ResponseBody
