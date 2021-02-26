@@ -3,8 +3,6 @@ package main.chat.controller;
 import main.chat.ChatRoom;
 import main.chat.Message;
 import main.chat.User;
-import main.chat.service.ChatRoomService;
-import main.chat.service.MessageService;
 import main.chat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +19,12 @@ import java.util.Optional;
 public class MessageController {
 
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public MessageController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(path = "/all")
     public @ResponseBody

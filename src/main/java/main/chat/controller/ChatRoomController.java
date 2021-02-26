@@ -22,14 +22,18 @@ import java.util.Optional;
 public class ChatRoomController {
 
 
-    @Autowired
-    private ChatRoomService chatRoomService;
+    private final ChatRoomService chatRoomService;
+
+    private final MessageService messageService;
+
+    private final UserService userService;
 
     @Autowired
-    private MessageService messageService;
-
-    @Autowired
-    private UserService userService;
+    public ChatRoomController(ChatRoomService chatRoomService, MessageService messageService, UserService userService) {
+        this.chatRoomService = chatRoomService;
+        this.messageService = messageService;
+        this.userService = userService;
+    }
 
     @PostMapping(path = "/add")
     public @ResponseBody
