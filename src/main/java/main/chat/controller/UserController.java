@@ -1,18 +1,17 @@
 package main.chat.controller;
 
-import main.chat.Password;
-import main.chat.User;
+import main.chat.model.Password;
+import main.chat.TokenGenerator;
+import main.chat.model.User;
 import main.chat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.swing.text.html.Option;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "user")
@@ -27,7 +26,7 @@ public class UserController {
     }
 
 
-    @PostMapping(path = "/add")
+    @PostMapping(path = "/register")
     public @ResponseBody
     String addNewUser(@RequestParam String userName, @RequestParam(name = "password") String passwordRaw, @RequestParam(required = false) String color) {
         if (userService.findByUserName(userName).isPresent()) {
@@ -62,7 +61,7 @@ public class UserController {
                         boolean tokenTaken;
                         String token;
                         do {
-                            token = UUID.randomUUID().toString();
+                            token = TokenGenerator.getToken();
                             Optional<User> userWithSameToken = userService.findByToken(token);
                             tokenTaken = userWithSameToken.isPresent();
                         } while (tokenTaken);

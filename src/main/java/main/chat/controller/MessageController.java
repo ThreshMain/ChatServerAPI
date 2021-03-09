@@ -1,8 +1,8 @@
 package main.chat.controller;
 
-import main.chat.ChatRoom;
-import main.chat.Message;
-import main.chat.User;
+import main.chat.model.ChatRoom;
+import main.chat.model.Message;
+import main.chat.model.User;
 import main.chat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package main.chat;
+package main.chat.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;

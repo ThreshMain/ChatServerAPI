@@ -1,4 +1,4 @@
-package main.chat;
+package main.chat.model;
 
 import org.springframework.stereotype.Component;
 

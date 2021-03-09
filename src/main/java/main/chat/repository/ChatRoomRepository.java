@@ -1,6 +1,6 @@
 package main.chat.repository;
 
-import main.chat.ChatRoom;
+import main.chat.model.ChatRoom;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

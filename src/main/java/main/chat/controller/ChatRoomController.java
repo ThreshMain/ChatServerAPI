@@ -1,9 +1,9 @@
 package main.chat.controller;
 
-import main.chat.ChatRoom;
-import main.chat.Message;
-import main.chat.Password;
-import main.chat.User;
+import main.chat.model.ChatRoom;
+import main.chat.model.Message;
+import main.chat.model.Password;
+import main.chat.model.User;
 import main.chat.service.ChatRoomService;
 import main.chat.service.MessageService;
 import main.chat.service.UserService;

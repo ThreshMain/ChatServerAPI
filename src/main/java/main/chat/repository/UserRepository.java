@@ -1,6 +1,6 @@
 package main.chat.repository;
 
-import main.chat.User;
+import main.chat.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

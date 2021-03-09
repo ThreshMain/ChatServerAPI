@@ -1,5 +1,6 @@
 package main;
 
+import main.chat.TokenGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
